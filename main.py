@@ -13,8 +13,10 @@ def main():
     #print(f.renderText(f'Spotify to YouTube Music'))
     spotify = SpotifyService()
     songs = spotify.getSongsByKeyword("u2", 3)
-    playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT")
-    print(playlist)
+    for x in songs:
+        print(x)
+    #playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT")
+    #print(playlist)
     #print(songs)
 
 

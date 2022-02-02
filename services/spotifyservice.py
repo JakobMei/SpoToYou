@@ -4,6 +4,7 @@ import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
+from data.song import Song
 
 
 class SpotifyService:
@@ -32,8 +33,10 @@ class SpotifyService:
     def parseSpotifyResponseOfSearch(self, results):
         songs = []
         for idx, track in enumerate(results['tracks']['items']):
-            song = (idx, track['name'], track['href'], track['artists'][0]['name'], track['duration_ms'])
-            songs.append(song)
+            # yup, thats ugly but apperently thats the only way to parse spotipy resp into own objects
+            currentSong = Song(track['name'], track['artists'][0]['name'], int(track['duration_ms']) / 1000, "spotify",
+                               track['href'])
+            songs.append(currentSong)
         return songs
 
     def parseSpotifyResponseOfPlaylist(self, results):
