@@ -33,16 +33,17 @@ class SpotifyService:
     # private parser for response of tracks
     def parseSpotifyResponseOfSearch(self, results):
         songs = []
-        for idx, track in enumerate(results['tracks']['items']):
+        for track in results['tracks']['items']:
             # yup, thats ugly but apperently thats the only way to parse spotipy resp into own objects
-            currentSong = Song(track['name'], track['artists'][0]['name'], int(track['duration_ms']) / 1000, Source.SPOTIFY,
-                               track['href'])
+            currentSong = Song(track['name'], track['artists'][0]['name'], int(track['duration_ms']) / 1000,
+                               Source.SPOTIFY, track['href'])
             songs.append(currentSong)
         return songs
 
     def parseSpotifyResponseOfPlaylist(self, results):
         songs = []
-        for idx, track in enumerate(results['tracks']['items']['track']):
-            song = (idx, track['name'], track['href'], track['artists'][0]['name'], track['duration_ms'])
-            songs.append(song)
+        for track in results['tracks']['items']:
+            currentSong = Song(track['track']['name'], track['track']['artists'][0]['name'], int(track['track']['duration_ms']) / 1000,
+                               Source.SPOTIFY, track['track']['href'])
+            songs.append(currentSong)
         return songs
