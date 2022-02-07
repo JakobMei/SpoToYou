@@ -5,6 +5,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 from data.song import Song
+from data.enums import Source
 
 
 class SpotifyService:
@@ -34,7 +35,7 @@ class SpotifyService:
         songs = []
         for idx, track in enumerate(results['tracks']['items']):
             # yup, thats ugly but apperently thats the only way to parse spotipy resp into own objects
-            currentSong = Song(track['name'], track['artists'][0]['name'], int(track['duration_ms']) / 1000, "spotify",
+            currentSong = Song(track['name'], track['artists'][0]['name'], int(track['duration_ms']) / 1000, Source.SPOTIFY,
                                track['href'])
             songs.append(currentSong)
         return songs
