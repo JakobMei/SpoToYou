@@ -4,6 +4,7 @@ import os
 from pyfiglet import Figlet
 
 from services.spotifyservice import SpotifyService
+from ytmusicapi import YTMusic
 
 
 def main():

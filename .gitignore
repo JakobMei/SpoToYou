@@ -128,5 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#env files
+#env files and secrets
 variables.env
+services/headers_auth.json

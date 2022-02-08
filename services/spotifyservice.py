@@ -24,14 +24,14 @@ class SpotifyService:
         # uri, artists[id, name, href, id]]}}
         results = self.authentication.search(q=keyword, limit=limit)
         # print(results)
-        return self.parseSpotifyResponseOfSearch(results)
+        return self.__parseSpotifyResponseOfSearch(results)
 
     def getSongsInPlaylistById(self, playlistId):
         results = self.authentication.playlist(playlistId)
-        return self.parseSpotifyResponseOfPlaylist(results)
+        return self.__parseSpotifyResponseOfPlaylist(results)
 
     # private parser for response of tracks
-    def parseSpotifyResponseOfSearch(self, results):
+    def __parseSpotifyResponseOfSearch(self, results):
         songs = []
         for track in results['tracks']['items']:
             # yup, thats ugly but apperently thats the only way to parse spotipy resp into own objects
@@ -40,7 +40,7 @@ class SpotifyService:
             songs.append(currentSong)
         return songs
 
-    def parseSpotifyResponseOfPlaylist(self, results):
+    def __parseSpotifyResponseOfPlaylist(self, results):
         songs = []
         for track in results['tracks']['items']:
             currentSong = Song(track['track']['name'], track['track']['artists'][0]['name'], int(track['track']['duration_ms']) / 1000,
