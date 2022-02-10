@@ -13,11 +13,11 @@ def main():
     # f = Figlet(font='slant')
     # print(f.renderText(f'Spotify to YouTube Music'))
     spotify = SpotifyService()
-    songs = spotify.getSongsByKeyword("u2", 3)
-    for x in songs:
-        print(x)
-    playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT")
-    for x in playlist:
+    #songs = spotify.getSongsByKeyword("u2", 3)
+    #for x in songs:
+    #    print(x)
+    playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", "TestName")
+    for x in playlist.songs:
         print(x)
 
 

@@ -4,8 +4,9 @@ import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
-from data.song import Song
+from data.song_utils import Song
 from data.enums import Source
+from data.song_utils import Playlist
 
 
 class SpotifyService:
@@ -26,9 +27,9 @@ class SpotifyService:
         # print(results)
         return self.__parseSpotifyResponseOfSearch(results)
 
-    def getSongsInPlaylistById(self, playlistId):
+    def getSongsInPlaylistById(self, playlistId, playlistName):
         results = self.authentication.playlist(playlistId)
-        return self.__parseSpotifyResponseOfPlaylist(results)
+        return self.__parseSpotifyResponseOfPlaylist(results, playlistName)
 
     # private parser for response of tracks
     def __parseSpotifyResponseOfSearch(self, results):
@@ -40,10 +41,10 @@ class SpotifyService:
             songs.append(currentSong)
         return songs
 
-    def __parseSpotifyResponseOfPlaylist(self, results):
-        songs = []
+    def __parseSpotifyResponseOfPlaylist(self, results, playlistName):
+        playlist = Playlist(playlistName)
         for track in results['tracks']['items']:
             currentSong = Song(track['track']['name'], track['track']['artists'][0]['name'], int(track['track']['duration_ms']) / 1000,
                                Source.SPOTIFY, track['track']['href'])
-            songs.append(currentSong)
-        return songs
+            playlist.songs.append(currentSong)
+        return playlist
