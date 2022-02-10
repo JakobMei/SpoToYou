@@ -17,8 +17,7 @@ def main():
     #for x in songs:
     #    print(x)
     playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", "TestName")
-    for x in playlist.songs:
-        print(x)
+    print(playlist)
 
 
 if __name__ == "__main__":

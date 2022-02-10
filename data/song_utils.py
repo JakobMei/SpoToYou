@@ -12,8 +12,10 @@ class Song:
     reference_from_source: str
 
     def __str__(self):
-        return f'Name: {self.song_name}, Artist: {self.artist_name}, Duration: {self.duration_in_s}, Source: {self.source}, Source reference: {self.reference_from_source}'
+        return f'Name: {self.song_name}, Artist: {self.artist_name}, Duration: {self.duration_in_s}, Source: {self.source}'
 
+    def __str_long__(self):
+        return f'Name: {self.song_name}, Artist: {self.artist_name}, Duration: {self.duration_in_s}, Source: {self.source}, Source reference: {self.reference_from_source}'
 
 @dataclass
 class Playlist:
@@ -23,3 +25,9 @@ class Playlist:
     def __init__(self, playlistName):
         self.name = playlistName
         self.songs = []
+
+    def __str__(self):
+        song_repr = ""
+        for s in self.songs:
+            song_repr = song_repr + s.__str__() + "\n"
+        return f'Playlist Name: {self.name}, Songs:\n {song_repr}'
