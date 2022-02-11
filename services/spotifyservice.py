@@ -37,14 +37,16 @@ class SpotifyService:
         for track in results['tracks']['items']:
             # yup, thats ugly but apperently thats the only way to parse spotipy resp into own objects
             currentSong = Song(track['name'], track['artists'][0]['name'], int(track['duration_ms']) / 1000,
-                               Source.SPOTIFY, track['href'])
+                               Source.SPOTIFY, track['id'], None)
             songs.append(currentSong)
         return songs
 
     def __parseSpotifyResponseOfPlaylist(self, results, playlistName):
         playlist = Playlist(playlistName)
         for track in results['tracks']['items']:
-            currentSong = Song(track['track']['name'], track['track']['artists'][0]['name'], int(track['track']['duration_ms']) / 1000,
-                               Source.SPOTIFY, track['track']['href'])
+            # structure of playlist response from spotify is slightly different to normal search resp,
+            # so an individual parser is necessary
+            currentSong = Song(track['track']['name'], track['track']['artists'][0]['name'],
+                               int(track['track']['duration_ms']) / 1000, Source.SPOTIFY, track['track']['id'], None)
             playlist.songs.append(currentSong)
         return playlist

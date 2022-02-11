@@ -1,10 +1,7 @@
-import time
-import os
-
-from pyfiglet import Figlet
-
 from services.spotifyservice import SpotifyService
 from ytmusicapi import YTMusic
+
+from services.youtubemusicservice import YouTubeMusicService
 
 
 def main():
@@ -16,8 +13,15 @@ def main():
     #songs = spotify.getSongsByKeyword("u2", 3)
     #for x in songs:
     #    print(x)
+    youtube = YouTubeMusicService()
     playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", "TestName")
-    print(playlist)
+    for song in playlist.songs:
+        ytSong = youtube.getIdByName(song.song_name)
+        # TODO Filter search response for type, e.g. only songs, not artists
+        if isinstance(ytSong[0], dict):
+            print(ytSong[0]['videoId'])
+        else:
+            print(f'Not a Song{ytSong}')
 
 
 if __name__ == "__main__":
