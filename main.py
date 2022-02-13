@@ -15,13 +15,8 @@ def main():
     #    print(x)
     youtube = YouTubeMusicService()
     playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", "TestName")
-    for song in playlist.songs:
-        ytSong = youtube.getIdByName(song.song_name)
-        # TODO Filter search response for type, e.g. only songs, not artists
-        if isinstance(ytSong[0], dict):
-            print(ytSong[0]['videoId'])
-        else:
-            print(f'Not a Song{ytSong}')
+    youtube.createPlaylistFromLocalPlaylist(playlist)
+
 
 
 if __name__ == "__main__":
