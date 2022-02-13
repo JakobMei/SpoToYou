@@ -18,14 +18,19 @@ class Song:
     def __str_long__(self):
         return f'Name: {self.song_name}, Artist: {self.artist_name}, Duration: {self.duration_in_s}, Source: {self.source}, Source reference: {self.spotify_id}'
 
+
 @dataclass
 class Playlist:
     name: str
     songs: list[Song]
+    spotify_id: str
+    ytmusic_id: str
 
-    def __init__(self, playlistName):
+    def __init__(self, playlistName, spotify_id, ytmusic_id):
         self.name = playlistName
         self.songs = []
+        self.spotify_id = spotify_id
+        self.ytmusic_id = ytmusic_id
 
     def __str__(self):
         song_repr = ""
