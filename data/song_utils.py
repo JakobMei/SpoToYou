@@ -25,12 +25,14 @@ class Playlist:
     songs: list[Song]
     spotify_id: str
     ytmusic_id: str
+    playlist_description: str
 
-    def __init__(self, playlistName, spotify_id, ytmusic_id):
+    def __init__(self, playlistName, spotify_id, ytmusic_id, playlist_description):
         self.name = playlistName
         self.songs = []
         self.spotify_id = spotify_id
         self.ytmusic_id = ytmusic_id
+        self.playlist_description = playlist_description
 
     def __str__(self):
         song_repr = ""

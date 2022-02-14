@@ -13,17 +13,18 @@ class YouTubeMusicService:
         return self.ytmusic.search(keyword)
 
     def getIdByName(self, song_name):
-        song = self.ytmusic.search(song_name, limit=1)
-        # TODO Filter search response for type, e.g. only songs, not artists
-        if isinstance(song[0], dict):
-            print(song[0]['videoId'])
-            return song[0]['videoId']
-        else:
-            print(f'Not a Song{song}')
-            return None
+        searchResponse = self.ytmusic.search(song_name, limit=1)
+        # getting the first song out of response, sometimes an artist or playlist gets returned as a first match
+        # which needs to be filtered out
+        for item in searchResponse:
+            if item['resultType'] == "song":
+                print(f'Song Name: {song_name}, YT-M Info: {item}')
+                return item['videoId']
+        logging.log(f'no machting YouTube Song for {song_name} found')
+        return None
 
-    def createPlaylist(self, playlist_name, playlist_description=None, privacy_status="PUBLIC"):
-        playlist_id = self.ytmusic.create_playlist(playlist_name, playlist_description, privacy_status, None, None)
+    def createPlaylist(self, playlist_name, playlist_description, privacy_status="PUBLIC"):
+        playlist_id = self.ytmusic.create_playlist(playlist_name, playlist_description, privacy_status)
         # TODO Exception Handling
         #except PlaylistCreationError:
         #    logging.error(f'Error while creating YT-Music Playlist. Name: {playlist_name}')
@@ -34,7 +35,7 @@ class YouTubeMusicService:
 
     def createPlaylistFromLocalPlaylist(self, playlist):
         # create new playlist with name and get playlistId
-        playlistId = self.createPlaylist(playlist.name)
+        playlistId = self.createPlaylist(playlist.name, playlist.playlist_description)
         for song in playlist.songs:
             # for each song get YT-music id and add it to yt music playlist
             song.ytmusic_id = self.getIdByName(song.song_name)
