@@ -19,7 +19,7 @@ class PlaylistCreationException(PlaylistException):
         super().__init__(message, source, playlist)
 
     def __str__(self):
-        return f'Error whilst creating a new Playlist at {self.source} with Playlist {self.playlist.name}. Error: {self.message}'
+        return f'Error whilst creating a new Playlist at {self.source} with Playlist {self.playlist.name}. Error: {self.message} '
 
 
 class AuthenticationException(Exception):
