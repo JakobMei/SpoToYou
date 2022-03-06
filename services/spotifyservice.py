@@ -27,9 +27,13 @@ class SpotifyService:
         # print(results)
         return self.__parseSpotifyResponseOfSearch(results)
 
-    def getSongsInPlaylistById(self, spotify_playlistId, playlistName):
+    def getSongsInPlaylistById(self, spotify_playlistId, playlistName=None, playlistDescription=None):
         results = self.authentication.playlist(spotify_playlistId)
-        playlist = Playlist(playlistName, spotify_playlistId, None, playlistName)
+        if playlistName is None:
+            playlistName = results['name']
+        if playlistDescription is None:
+            playlistDescription = ""
+        playlist = Playlist(playlistName, spotify_playlistId, None, playlistDescription)
         return self.__parseSpotifyResponseOfPlaylist(results, playlist)
 
     # private parser for response of tracks

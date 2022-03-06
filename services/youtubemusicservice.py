@@ -18,7 +18,7 @@ class YouTubeMusicService:
         # which needs to be filtered out
         for item in searchResponse:
             if item['resultType'] == "song":
-                print(f'Song Name: {song_name}, YT-M Info: {item}')
+                print(f'Song Name: {song_name}')
                 return item['videoId']
         logging.log(f'no machting YouTube Song for {song_name} found')
         return None
