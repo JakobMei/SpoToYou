@@ -1,7 +1,7 @@
 # SpoToYou
 This application can convert a Music-Playlist from Spotify to a YouTube-Music Playlist, as there is no official service for that. Therefore it loops over the Spotify-Playlist, searches for each song on YouTube-Music and adds the song to a new playlist.
 
-# used Packages sofar
+# used and mandatory Packages
  - pyfiglet for fancy console text
  - dotenv for environment variables
  - spotipy as spotify api/sdk
@@ -57,14 +57,14 @@ Sofar there is only the option to convert a Spotify Playlist to a Youtube Music 
 ```
 $venv python3 main.py ytm {ID of the Spotify Playlist}
 ```
-There are to optional parameters:
+There are two optional parameters:
 ```
 -n / --name to set a new for the new Playlist. If not defined, origin playlists name will be used
 -d / --description to fill out a Description for the playlist. If not defined, It'll be blank as its not mandatory.
 ```
 An example could look like this:
 ```
-python3 main.py ytm 3guAfgfqBXolcknhXwNSeT -n CooleLieder -d Beschreibung
+$venv python3 main.py ytm 3guAfgfqBXolcknhXwNSeT -n CooleLieder -d Beschreibung
 ```
 
 ##Spotify to Apple Music
@@ -72,3 +72,9 @@ NOT IMPLEMENTED YET
 ```
 $venv python3 main.py am
 ```
+
+#Technical Details and Structure
+##Entity Relationship Diagram
+![ER Diagram](img/erd.png)
+##PAP
+tbc
