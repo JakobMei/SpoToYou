@@ -2,12 +2,21 @@ from ytmusicapi import YTMusic
 import logging
 import os
 
+from data.enums import Source
+from data.exceptions import AuthenticationException
+
 
 
 
 class YouTubeMusicService:
     def __init__(self):
         self.ytmusic = YTMusic('services/headers_auth.json')
+
+    def testAuthentication(self):
+        try:
+            self.ytmusic.search("test")
+        except Exception:
+            raise AuthenticationException("Error whilst Authenticating at Youtube Music", Source.YOUTUBE_MUSIC)
 
     def searchWithKeyWord(self, keyword):
         return self.ytmusic.search(keyword)

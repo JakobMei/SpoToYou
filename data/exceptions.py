@@ -30,3 +30,8 @@ class AuthenticationException(Exception):
 
     def __str__(self):
         return f'Error whilst trying to authenticate to {self.source}. Error: {self.message}'
+
+
+class NotImplementedException(Exception):
+    def __init__(self):
+        super().__init__('The function you are trying to call is not implemented yet.')

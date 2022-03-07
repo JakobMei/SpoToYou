@@ -3,3 +3,4 @@ spotipy~=2.19.0
 python-dotenv~=0.19.2
 ytmusicapi~=0.20.0
 click~=8.0.4
+colorama~=0.4.4

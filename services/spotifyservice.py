@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from data.song_utils import Song
 from data.enums import Source
 from data.song_utils import Playlist
+from data.exceptions import AuthenticationException
 
 
 class SpotifyService:
@@ -19,6 +20,12 @@ class SpotifyService:
         self.authentication = spotipy.Spotify(
             auth_manager=SpotifyClientCredentials(client_id=os.getenv('CLIENT_ID'),
                                                   client_secret=os.getenv('CLIENT_SECRET')))
+
+    def testAuthentication(self):
+        try:
+            self.authentication.search("test")
+        except Exception:
+            raise AuthenticationException("Error whilst authenticating at Spotity", Source.SPOTIFY)
 
     def getSongsByKeyword(self, keyword, limit=20, *args):
         # response is structured as follows: results{tracks{items[name, album{} duration in ms, href, popularity,

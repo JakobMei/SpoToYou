@@ -2,12 +2,14 @@ from pyfiglet import Figlet
 import click
 
 from data.enums import Source
-from data.exceptions import PlaylistCreationException
+from data.exceptions import NotImplementedException
 from services.spotifyservice import SpotifyService
 from services.youtubemusicservice import YouTubeMusicService
+from colorama import init, Fore
 
 spotify = SpotifyService()
 youtube = YouTubeMusicService()
+init(autoreset=True)
 
 
 @click.group()
@@ -15,6 +17,8 @@ def main():
     f = Figlet(font='slant')
     print(f.renderText(f'SpoToYou'))
     click.echo('Hey there!')
+    testAuthentications()
+    click.echo(Fore.BLUE + "Shall we start?")
     pass
 
     # playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", None)
@@ -58,7 +62,15 @@ def am(playlistId, playlistName=None):
     :param playlistName: to be defined
     :return: nothing yet
     '''
+    raise NotImplementedException
     pass
+
+
+def testAuthentications():
+    click.echo(Fore.YELLOW + "Testing Authentications")
+    spotify.testAuthentication()
+    youtube.testAuthentication()
+    click.echo(Fore.GREEN + "Fully Authenticated and ready to go!")
 
 
 if __name__ == "__main__":
