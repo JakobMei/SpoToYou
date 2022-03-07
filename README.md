@@ -10,7 +10,7 @@ This application can convert a Music-Playlist from Spotify to a YouTube-Music Pl
  - colorama for a better looking console
 
 # Prerequisites
-##1.  Installation & virtual Environment
+## 1.  Installation & virtual Environment
 
 Create virtual environment and install all the needed packages from requirements.txt as follows:
 
@@ -25,7 +25,7 @@ Create virtual environment and install all the needed packages from requirements
 ```
     pip3 install -r requirements.txt
 ```
-##2. Environment Variables for Spotify
+## 2. Environment Variables for Spotify
 file for env vars needs to be created, currently named "variables.txt".
 currently follows this structure:
 ```
@@ -33,7 +33,7 @@ CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  ```
 *secret & id are for spotify authentication and can be created at [Spotify Developer Portal](https://developer.spotify.com/dashboard/applications)*
-##3. Authentication Header for YT-Music
+## 3. Authentication Header for YT-Music
 file for YT music authentication needs to be created in /services called "headers_auth.json".
 currently follows this structure:
 ```
@@ -67,14 +67,14 @@ An example could look like this:
 $venv python3 main.py ytm 3guAfgfqBXolcknhXwNSeT -n CooleLieder -d Beschreibung
 ```
 
-##Spotify to Apple Music
+## Spotify to Apple Music
 NOT IMPLEMENTED YET
 ```
 $venv python3 main.py am
 ```
 
-#Technical Details and Structure
-##Entity Relationship Diagram
+# Technical Details and Structure
+## Entity Relationship Diagram
 ![ER Diagram](img/erd.png)
-##PAP
+## PAP
 tbc
