@@ -3,9 +3,7 @@ import logging
 import os
 
 from data.enums import Source
-from data.exceptions import AuthenticationException
-
-
+from data.exceptions import AuthenticationException, PlaylistCreationException, SongException
 
 
 class YouTubeMusicService:
@@ -13,12 +11,14 @@ class YouTubeMusicService:
         self.ytmusic = YTMusic('services/headers_auth.json')
 
     def testAuthentication(self):
+        # for startup, to test if authentication works
         try:
             self.ytmusic.search("test")
         except Exception:
             raise AuthenticationException("Error whilst Authenticating at Youtube Music", Source.YOUTUBE_MUSIC)
 
     def searchWithKeyWord(self, keyword):
+        # search in YTM with a keyword
         return self.ytmusic.search(keyword)
 
     def getIdByName(self, song_name):
@@ -33,14 +33,19 @@ class YouTubeMusicService:
         return None
 
     def createPlaylist(self, playlist_name, playlist_description, privacy_status="PUBLIC"):
-        playlist_id = self.ytmusic.create_playlist(playlist_name, playlist_description, privacy_status)
-        # TODO Exception Handling
-        #except PlaylistCreationError:
-        #    logging.error(f'Error while creating YT-Music Playlist. Name: {playlist_name}')
-        return playlist_id
+        # Create a Playlist with name and a description, returns the new playlist id
+        try:
+            playlist_id = self.ytmusic.create_playlist(playlist_name, playlist_description, privacy_status)
+            return playlist_id
+        except:
+            raise PlaylistCreationException("Failed to create Playlist", Source.YOUTUBE_MUSIC, playlist_name)
 
     def addSongToPlaylist(self, playlistId, songId):
-        self.ytmusic.add_playlist_items(playlistId, [songId])
+        # add a Song to a specific Playlist
+        try:
+            self.ytmusic.add_playlist_items(playlistId, [songId])
+        except:
+            raise SongException(f"Failed to add Song to Playlist with id {playlistId}", Source.YOUTUBE_MUSIC, songId)
 
     def createPlaylistFromLocalPlaylist(self, playlist):
         # create new playlist with name and get playlistId

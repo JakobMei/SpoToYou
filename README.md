@@ -69,3 +69,6 @@ python3 main.py ytm 3guAfgfqBXolcknhXwNSeT -n CooleLieder -d Beschreibung
 
 ##Spotify to Apple Music
 NOT IMPLEMENTED YET
+```
+$venv python3 main.py am
+```

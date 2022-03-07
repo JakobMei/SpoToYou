@@ -22,12 +22,15 @@ class SpotifyService:
                                                   client_secret=os.getenv('CLIENT_SECRET')))
 
     def testAuthentication(self):
+        # for startup, to test if authentication worked
         try:
             self.authentication.search("test")
         except Exception:
             raise AuthenticationException("Error whilst authenticating at Spotity", Source.SPOTIFY)
 
-    def getSongsByKeyword(self, keyword, limit=20, *args):
+    def getSongsByKeyword(self, keyword, limit=20):
+        # to get one or more songs from a specific keyword
+
         # response is structured as follows: results{tracks{items[name, album{} duration in ms, href, popularity,
         # uri, artists[id, name, href, id]]}}
         results = self.authentication.search(q=keyword, limit=limit)
@@ -35,6 +38,7 @@ class SpotifyService:
         return self.__parseSpotifyResponseOfSearch(results)
 
     def getSongsInPlaylistById(self, spotify_playlistId, playlistName=None, playlistDescription=None):
+        # to get all songs in a given playlist
         results = self.authentication.playlist(spotify_playlistId)
         if playlistName is None:
             playlistName = results['name']
@@ -44,7 +48,7 @@ class SpotifyService:
         return self.__parseSpotifyResponseOfPlaylist(results, playlist)
 
     # private parser for response of tracks
-    def __parseSpotifyResponseOfSearch(self, results):
+    def _parseSpotifyResponseOfSearch(self, results):
         songs = []
         for track in results['tracks']['items']:
             # yup, that's ugly but apparently that's the only way to parse spotipy resp into own objects
@@ -53,7 +57,7 @@ class SpotifyService:
             songs.append(currentSong)
         return songs
 
-    def __parseSpotifyResponseOfPlaylist(self, results, playlist):
+    def _parseSpotifyResponseOfPlaylist(self, results, playlist):
         for track in results['tracks']['items']:
             # structure of playlist response from spotify is slightly different to normal search resp,
             # so an individual parser is necessary

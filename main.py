@@ -5,7 +5,7 @@ from data.enums import Source
 from data.exceptions import NotImplementedException
 from services.spotifyservice import SpotifyService
 from services.youtubemusicservice import YouTubeMusicService
-from colorama import init, Fore
+from colorama import init, Fore, Back
 
 spotify = SpotifyService()
 youtube = YouTubeMusicService()
@@ -55,23 +55,31 @@ def ytm(id, name=None, description=None):
 
 
 @main.command()
-def am(playlistId, playlistName=None):
+@click.argument('id', type=str)
+@click.option('--name',
+              '-n',
+              type=str,
+              help='OPTIONAL: You can set the playlists name here, otherwise the Name from the origins playlist will be taken')
+def am(id, name=None):
     '''
     NOT IMPLEMENTED YET - This Function will convert your Spotify Playlist to a new Apple Music Playlist
-    :param playlistId: to be defined
-    :param playlistName: to be defined
+    :param id: to be defined
+    :param name: to be defined
     :return: nothing yet
     '''
-    raise NotImplementedException
+    raise NotImplementedException()
     pass
 
 
 def testAuthentications():
-    click.echo(Fore.YELLOW + "Testing Authentications")
+    click.echo(Fore.YELLOW + "Testing Authentications...")
     spotify.testAuthentication()
+    click.echo(Fore.GREEN + "SPOTIFY SUCCESSFULLY AUTHENTICATED")
     youtube.testAuthentication()
-    click.echo(Fore.GREEN + "Fully Authenticated and ready to go!")
+    click.echo(Fore.GREEN + "YOUTUBE-MUSIC SUCCESSFULLY AUTHENTICATED")
+    click.echo(Fore.LIGHTGREEN_EX + "Fully Authenticated and ready to go!")
 
 
 if __name__ == "__main__":
     main()
+
