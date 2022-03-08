@@ -23,7 +23,7 @@ class PlaylistCreationException(PlaylistException):
 
 
 class AuthenticationException(Exception):
-    def __init__(self, message, source, ):
+    def __init__(self, message, source):
         super().__init__(message)
         self.message = message
         self.source = source
@@ -35,3 +35,8 @@ class AuthenticationException(Exception):
 class NotImplementedException(Exception):
     def __init__(self):
         super().__init__('The function you are trying to call is not implemented yet.')
+
+
+class PlaylistException(Exception):
+    def __init__(self, source):
+        super().__init__(f'Playlist does not exist or is not public/accessible at + {source}')

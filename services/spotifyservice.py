@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from data.song_utils import Song
 from data.enums import Source
 from data.song_utils import Playlist
-from data.exceptions import AuthenticationException
+from data.exceptions import AuthenticationException, PlaylistException
 
 
 class SpotifyService:
@@ -39,7 +39,10 @@ class SpotifyService:
 
     def getSongsInPlaylistById(self, spotify_playlistId, playlistName=None, playlistDescription=None):
         # to get all songs in a given playlist
-        results = self.authentication.playlist(spotify_playlistId)
+        try:
+            results = self.authentication.playlist(spotify_playlistId)
+        except Exception:
+            raise PlaylistException(Source.SPOTIFY)
         if playlistName is None:
             playlistName = results['name']
         if playlistDescription is None:

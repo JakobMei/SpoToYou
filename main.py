@@ -18,7 +18,7 @@ def main():
     print(f.renderText(f'SpoToYou'))
     click.echo('Hey there!')
     testAuthentications()
-    click.echo(Fore.BLUE + "Shall we start?")
+    click.echo(Fore.BLUE + "Shall we start? Lets Go!")
     pass
 
     # playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", None)
@@ -33,7 +33,7 @@ def main():
 
 
 @main.command()
-@click.argument('id', type=str)
+@click.argument('p_id', type=str)
 @click.option('--name',
               '-n',
               type=str,
@@ -42,28 +42,28 @@ def main():
               '-d',
               type=str,
               help='OPTIONAL: You can set the new playlists description, otherwise it will be blank')
-def ytm(id, name=None, description=None):
+def ytm(p_id, name=None, description=None):
     '''
     This Function will convert your Spotify Playlist into a new YouTube-Music Playlist with all its songs.
-    :param playlistId: ID of Spotify Playlist
+    :param pid: ID of Spotify Playlist
     :param name: OPTIONAL Name of new Playlist
     :param description: OPTIONAL Description of new Playlist
-    :return: success or failure
+    :return: nothing
     '''
-    playlist = spotify.getSongsInPlaylistById(id, name, description)
+    playlist = spotify.getSongsInPlaylistById(p_id, name, description)
     youtube.createPlaylistFromLocalPlaylist(playlist)
 
 
 @main.command()
-@click.argument('id', type=str)
+@click.argument('p_id', type=str)
 @click.option('--name',
               '-n',
               type=str,
               help='OPTIONAL: You can set the playlists name here, otherwise the Name from the origins playlist will be taken')
-def am(id, name=None):
+def am(p_id, name=None):
     '''
     NOT IMPLEMENTED YET - This Function will convert your Spotify Playlist to a new Apple Music Playlist
-    :param id: to be defined
+    :param p_id: to be defined
     :param name: to be defined
     :return: nothing yet
     '''
@@ -87,5 +87,5 @@ def manualRun():
 
 
 if __name__ == "__main__":
-    manualRun()
-    # main()
+    # manualRun()
+    main()
