@@ -35,7 +35,7 @@ class SpotifyService:
         # uri, artists[id, name, href, id]]}}
         results = self.authentication.search(q=keyword, limit=limit)
         # print(results)
-        return self.__parseSpotifyResponseOfSearch(results)
+        return self._parseSpotifyResponseOfSearch(results)
 
     def getSongsInPlaylistById(self, spotify_playlistId, playlistName=None, playlistDescription=None):
         # to get all songs in a given playlist
@@ -45,7 +45,7 @@ class SpotifyService:
         if playlistDescription is None:
             playlistDescription = ""
         playlist = Playlist(playlistName, spotify_playlistId, None, playlistDescription)
-        return self.__parseSpotifyResponseOfPlaylist(results, playlist)
+        return self._parseSpotifyResponseOfPlaylist(results, playlist)
 
     # private parser for response of tracks
     def _parseSpotifyResponseOfSearch(self, results):

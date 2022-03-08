@@ -80,6 +80,12 @@ def testAuthentications():
     click.echo(Fore.LIGHTGREEN_EX + "Fully Authenticated and ready to go!")
 
 
-if __name__ == "__main__":
-    main()
+# for debugging purposes, as PyCharm Debugger doesn't work, when Program is started via CL
+def manualRun():
+    playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", None, None)
+    youtube.createPlaylistFromLocalPlaylist(playlist)
 
+
+if __name__ == "__main__":
+    manualRun()
+    # main()
