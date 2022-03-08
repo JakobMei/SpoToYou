@@ -76,5 +76,5 @@ $venv python3 main.py am
 # Technical Details and Structure
 ## Entity Relationship Diagram
 ![ER Diagram](img/erd.png)
-## PAP
-tbc
+## Programm Ablauf Plan
+![PAP Diagram](img/pap.jpg)
