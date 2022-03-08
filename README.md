@@ -74,7 +74,10 @@ $venv python3 main.py am
 ```
 
 # Technical Details and Structure
+No Tests (yet), as there is no real business logic to test. Tbc
 ## Entity Relationship Diagram
 ![ER Diagram](img/erd.png)
+## Class Diagram
+![Class Diagram](img/cd.jpg)
 ## Programm Ablauf Plan
 ![PAP Diagram](img/pap.jpg)

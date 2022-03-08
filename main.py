@@ -19,6 +19,7 @@ def main():
     click.echo('Hey there!')
     testAuthentications()
     click.echo(Fore.BLUE + "Shall we start? Lets Go!")
+    click.echo(Fore.BLUE + "Songs converted:")
     pass
 
     # playlist = spotify.getSongsInPlaylistById("3guAfgfqBXolcknhXwNSeT", None)
@@ -44,7 +45,7 @@ def main():
               help='OPTIONAL: You can set the new playlists description, otherwise it will be blank')
 def ytm(p_id, name=None, description=None):
     '''
-    This Function will convert your Spotify Playlist into a new YouTube-Music Playlist with all its songs.
+    Converts a Spotify Playlist to YouTube-Music Playlist
     :param pid: ID of Spotify Playlist
     :param name: OPTIONAL Name of new Playlist
     :param description: OPTIONAL Description of new Playlist
@@ -62,7 +63,7 @@ def ytm(p_id, name=None, description=None):
               help='OPTIONAL: You can set the playlists name here, otherwise the Name from the origins playlist will be taken')
 def am(p_id, name=None):
     '''
-    NOT IMPLEMENTED YET - This Function will convert your Spotify Playlist to a new Apple Music Playlist
+    NOT IMPLEMENTED YET Spotify to YouTube Music
     :param p_id: to be defined
     :param name: to be defined
     :return: nothing yet

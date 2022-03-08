@@ -13,7 +13,7 @@ class Song:
     ytmusic_id: str
 
     def __str__(self):
-        return f'Name: {self.song_name}, Artist: {self.artist_name}, Duration: {self.duration_in_s}, Source: {self.source}'
+        return f'Name: {self.song_name}, Artist: {self.artist_name}'
 
     def __str_long__(self):
         return f'Name: {self.song_name}, Artist: {self.artist_name}, Duration: {self.duration_in_s}, Source: {self.source}, Source reference: {self.spotify_id}'
