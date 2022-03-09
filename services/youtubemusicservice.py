@@ -8,7 +8,11 @@ from data.exceptions import AuthenticationException, PlaylistCreationException, 
 
 class YouTubeMusicService:
     def __init__(self):
-        self.ytmusic = YTMusic('services/headers_auth.json')
+        try:
+            self.ytmusic = YTMusic('services/headers_auth.json')
+        except:
+            # yeah, you shouldn't do an empy except but no clue which kind of error can occur here
+            YTMusic.setup("services/headers_auth.json")
 
     def testAuthentication(self):
         # for startup, to test if authentication works
