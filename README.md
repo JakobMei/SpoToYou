@@ -26,7 +26,7 @@ Create virtual environment and install all the needed packages from requirements
     pip3 install -r requirements.txt
 ```
 ## 2. Environment Variables for Spotify
-file for env vars needs to be created, currently named "variables.txt".
+file for env vars needs to be created, currently named "variables.env".
 currently follows this structure:
 ```
 CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
