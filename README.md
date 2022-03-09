@@ -33,7 +33,12 @@ CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  ```
 *secret & id are for spotify authentication and can be created at [Spotify Developer Portal](https://developer.spotify.com/dashboard/applications)*
-## 3. Authentication Header for YT-Music
+## 3.1 Initial Startup
+```
+$venv python3 main.py
+```
+It will ask you to set the Authentication header for YT-Music. This comes in step 3.2
+## 3.2 Authentication Header for YT-Music
 file for YT music authentication needs to be created in /services called "headers_auth.json".
 currently follows this structure:
 ```
