@@ -48,7 +48,7 @@ currently follows this structure:
 }
 ```
 [click here to learn more about how to get your own YTMusic Cookies](https://ytmusicapi.readthedocs.io/en/latest/setup.html#manual-file-creation)
-
+###Attention: Cookie might be longer than the capacity of the clipboard (to copy, so make sure its copied completely (maybe in 2 parts)
 
 # USAGE
 ## Spotify to Youtube Music
