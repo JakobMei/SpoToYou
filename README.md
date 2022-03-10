@@ -33,7 +33,12 @@ CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  ```
 *secret & id are for spotify authentication and can be created at [Spotify Developer Portal](https://developer.spotify.com/dashboard/applications)*
-## 3. Authentication Header for YT-Music
+## 3.1 Initial Start- & SetUp
+```
+$venv python3 main.py
+```
+It will ask you to set the Authentication header for YT-Music in the command line. You need to ignore this request and terminate the terminal/command line (yep, just a temporary fix). The real authentication will start in the next chapter/3.2
+## 3.2 Authentication Header for YT-Music
 file for YT music authentication needs to be created in /services called "headers_auth.json".
 currently follows this structure:
 ```
@@ -50,6 +55,13 @@ currently follows this structure:
 [click here to learn more about how to get your own YTMusic Cookies](https://ytmusicapi.readthedocs.io/en/latest/setup.html#manual-file-creation)
 ###Attention: Cookie might be longer than the capacity of the clipboard (to copy, so make sure its copied completely (maybe in 2 parts)
 ### A step by step tutorial of how to get your YT-Music Cookie can be found in file YTMusic_Cookie.md in this Repo.
+## Now everything should work fine
+To test, just run command:
+```
+$venv python3 main.py
+```
+If the usual authentication test for Spotify and Youtube Music starts, you should be good to go with the normal use of the application.
+If it crashes and asks you to set the header, something went wrong. In that case, please contact me or open an issue in GitHub - Thanks!
 # USAGE
 ## Spotify to Youtube Music
 This is a CLI (Command Line Interface)-Tool so there is no GUI at all. It's completely controlled via the terminal.
